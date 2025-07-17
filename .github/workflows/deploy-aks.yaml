@@ -28,16 +28,16 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Terraform Init
-        run: terraform -chdir=Terraform/Terraform init
+        run: terraform -chdir=Terraform init
 
       - name: Terraform Validate
-        run: terraform -chdir=Terraform/Terraform validate
+        run: terraform -chdir=Terraform validate
 
       - name: Terraform Plan
-        run: terraform -chdir=Terraform/Terraform plan
+        run: terraform -chdir=Terraform plan
 
       - name: Terraform Apply
-        run: terraform -chdir=Terraform/Terraform apply -auto-approve
+        run: terraform -chdir=Terraform apply -auto-approve
 
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
