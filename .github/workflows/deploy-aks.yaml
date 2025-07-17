@@ -1,5 +1,4 @@
-# Deploy Azure AKS Teste teste
-name: Deploy AKS and Kubernetes Resources
+name: Deploy AKS and Build Docker Image
 
 on:
   push:
@@ -7,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy_and_build:
     runs-on: ubuntu-latest
     env:
       RG_NAME: ${{ secrets.RG_NAME }}
@@ -46,9 +45,7 @@ jobs:
         run: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 
       - name: Wait for ingress-nginx controller to be ready
-        run: |
-          kubectl rollout status deployment ingress-nginx-controller \
-            --namespace ingress-nginx --timeout=120s
+        run: kubectl rollout status deployment ingress-nginx-controller --namespace ingress-nginx --timeout=120s
 
       - name: Apply Kubernetes manifests - Deployment
         run: kubectl apply -f Terraform/K8S/Deployment/cep.yaml
@@ -71,10 +68,36 @@ jobs:
       - name: Check Ingress
         run: kubectl get ingress -A
 
-      - name: Terraform Destroy on failure
-        if: failure()
-        run: terraform -chdir=Deploy/Terraform destroy -auto-approve
+      - name: ACR Docker Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: resourceintex.azurecr.io
+          username: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientId }}
+          password: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientSecret }}
 
-      - name: Delete NetworkWatcherRG on failure
-        if: failure()
+      - name: Build and push Docker image to ACR
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Services/CEPService/Dockerfile
+          push: true
+          tags: resourceintex.azurecr.io/cepservice:latest
+
+  cleanup:
+    needs: deploy_and_build
+    if: failure()
+    runs-on: ubuntu-latest
+    env:
+      RG_NAME: ${{ secrets.RG_NAME }}
+
+    steps:
+      - name: Login to Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform Destroy
+        run: terraform -chdir=Terraform destroy -auto-approve
+
+      - name: Delete NetworkWatcherRG
         run: az group delete --name NetworkWatcherRG --yes --no-wait
