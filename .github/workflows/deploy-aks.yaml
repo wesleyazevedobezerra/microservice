@@ -1,4 +1,4 @@
-# Deploy Azure AKS Teste
+# Deploy Azure AKS Teste teste
 name: Deploy AKS and Kubernetes Resources
 
 on:
@@ -49,9 +49,6 @@ jobs:
         run: |
           kubectl rollout status deployment ingress-nginx-controller \
             --namespace ingress-nginx --timeout=120s
-
-
-
 
       - name: Apply Kubernetes manifests - Deployment
         run: kubectl apply -f Terraform/K8S/Deployment/cep.yaml

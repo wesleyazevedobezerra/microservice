@@ -9,7 +9,7 @@ WORKDIR /src
 COPY Services/CEPService/*.csproj ./
 RUN dotnet restore
 COPY Services/CEPService/. . 
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish -c Release -o /app/publish 
 
 # Final
 FROM base AS final
