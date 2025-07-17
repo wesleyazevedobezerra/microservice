@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "kj+Nd31zsrqW3QWPIREeq6oFENqghyHnRS2hM94NNWs=",
+  "Source": "CEPService",
+  "BasePath": "_content/CEPService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

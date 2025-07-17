@@ -1,0 +1,1 @@
+teste para que o docker ignore o arquivo.txt e a pasta temp

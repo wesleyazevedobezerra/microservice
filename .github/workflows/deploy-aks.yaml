@@ -1,0 +1,88 @@
+# Deploy Azure AKS Teste
+name: Deploy AKS and Kubernetes Resources
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      RG_NAME: ${{ secrets.RG_NAME }}
+      AKS_NAME: ${{ secrets.AKS_NAME }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Login to Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+
+      - name: Terraform Init
+        run: terraform -chdir=Terraform/Terraform init
+
+      - name: Terraform Validate
+        run: terraform -chdir=Terraform/Terraform validate
+
+      - name: Terraform Plan
+        run: terraform -chdir=Terraform/Terraform plan
+
+      - name: Terraform Apply
+        run: terraform -chdir=Terraform/Terraform apply -auto-approve
+
+      - name: Get AKS credentials
+        run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
+
+      - name: Add ingress-nginx repo
+        run: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+      - name: Update helm repos
+        run: helm repo update
+
+      - name: Install or upgrade ingress-nginx
+        run: |
+          helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
+            --namespace ingress-nginx --create-namespace
+
+      - name: Wait for ingress-nginx controller to be ready
+        run: |
+          kubectl rollout status deployment ingress-nginx-controller \
+            --namespace ingress-nginx --timeout=120s
+
+      - name: Apply Kubernetes manifests - Deployment
+        run: kubectl apply -f Terraform/K8S/Deployment/cep.yaml
+
+      - name: Apply Kubernetes manifests - Service
+        run: kubectl apply -f Terraform/K8S/Service/cep.yaml
+
+      - name: Apply Kubernetes manifests - Ingress
+        run: kubectl apply -f Terraform/K8S/Ingress/cep.yaml
+
+      - name: Check Pods
+        run: kubectl get pods -A
+
+      - name: Check Deployments
+        run: kubectl get deployments -A
+
+      - name: Check Services
+        run: kubectl get services -A
+
+      - name: Check Ingress
+        run: kubectl get ingress -A
+
+      - name: Terraform Destroy on failure
+        if: failure()
+        run: terraform -chdir=Deploy/Terraform destroy -auto-approve
+
+      - name: Delete NetworkWatcherRG on failure
+        if: failure()
+        run: az group delete --name NetworkWatcherRG --yes --no-wait

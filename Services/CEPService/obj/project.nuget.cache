@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "lBhKr1Aef3+KhvVDupTl784qr67Gc/lhBWQfdLOzn0GpgiWkXesSmNWEs9V1hrJHR0gEBKlYMfaUHKNIF1XhiQ==",
+  "success": true,
+  "projectFilePath": "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/CEPService.csproj",
+  "expectedPackageFiles": [
+    "/home/wesleyab/.nuget/packages/microsoft.aspnetcore.openapi/8.0.12/microsoft.aspnetcore.openapi.8.0.12.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+    "/home/wesleyab/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}
