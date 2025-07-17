@@ -42,16 +42,8 @@ jobs:
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
 
-      - name: Add ingress-nginx repo
-        run: helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-
-      - name: Update helm repos
-        run: helm repo update
-
-      - name: Install or upgrade ingress-nginx
-        run: |
-          helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
-            --namespace ingress-nginx --create-namespace
+      - name: Apply ingress-nginx manifest
+        run: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 
       - name: Wait for ingress-nginx controller to be ready
         run: |
