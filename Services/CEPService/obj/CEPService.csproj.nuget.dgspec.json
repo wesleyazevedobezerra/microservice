@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/CEPService.csproj": {}
+    "/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/CEPService.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/CEPService.csproj": {
+    "/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/CEPService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/CEPService.csproj",
+        "projectUniqueName": "/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/CEPService.csproj",
         "projectName": "CEPService",
-        "projectPath": "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/CEPService.csproj",
+        "projectPath": "/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/CEPService.csproj",
         "packagesPath": "/home/wesleyab/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/obj/",
+        "outputPath": "/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/wesleyab/.nuget/NuGet/NuGet.Config"
@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.12, )"
@@ -45,6 +49,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.12.1, )"
             }
           },
           "imports": [

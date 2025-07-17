@@ -99,3 +99,45 @@
 /mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/obj/Debug/net8.0/CEPService.pdb
 /mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/obj/Debug/net8.0/CEPService.genruntimeconfig.cache
 /mnt/c/Users/wesley.bezerra/OneDrive - TREVISO/Treviso (1)/Azure-Kubernets-CI-CD-Terraform/Services/CEPService/obj/Debug/net8.0/ref/CEPService.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.csproj.AssemblyReference.cache
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.AssemblyInfoInputs.cache
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.AssemblyInfo.cs
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.csproj.CoreCompileInputs.cache
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.MvcApplicationPartsAssemblyInfo.cs
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.MvcApplicationPartsAssemblyInfo.cache
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.sourcelink.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/refint/CEPService.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.pdb
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/appsettings.Development.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/appsettings.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/CEPService
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/CEPService.deps.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/CEPService.runtimeconfig.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/CEPService.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/CEPService.pdb
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets.build.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets.development.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets/msbuild.CEPService.Microsoft.AspNetCore.StaticWebAssets.props
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets/msbuild.build.CEPService.props
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.CEPService.props
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.CEPService.props
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/staticwebassets.pack.json
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/scopedcss/bundle/CEPService.styles.css
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.csproj.CopyComplete
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/CEPService.genruntimeconfig.cache
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/obj/Debug/net8.0/ref/CEPService.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/mnt/c/Users/wesley.bezerra/Desktop/Estudos/NestJS_DotNet_Golang_Python/todo_cep/Services/CEPService/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
