@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cep-nginx
-        image: wesleyab/cep_service:latest
+        image: resourceintex.azurecr.io/cepservice:latest #wesleyab/cep_service:latest
         resources:
           limits:
             memory: "128Mi"

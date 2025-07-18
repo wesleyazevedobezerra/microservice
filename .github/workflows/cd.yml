@@ -1,0 +1,59 @@
+# .github/workflows/cd.yml
+name: CD - Deploy Infra and App
+
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      RG_NAME: ${{ secrets.RG_NAME }}
+      AKS_NAME: ${{ secrets.AKS_NAME }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Login to Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+
+      - name: Terraform Init
+        run: terraform -chdir=Terraform init
+
+      - name: Terraform Validate
+        run: terraform -chdir=Terraform validate
+
+      - name: Terraform Plan
+        run: terraform -chdir=Terraform plan
+
+      - name: Terraform Apply
+        run: terraform -chdir=Terraform apply -auto-approve
+
+      - name: Get AKS credentials
+        run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
+
+      - name: Apply ingress-nginx
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+          kubectl rollout status deployment ingress-nginx-controller --namespace ingress-nginx --timeout=120s
+
+      - name: Deploy app (Deployment, Service, Ingress)
+        run: |
+          kubectl apply -f Terraform/K8S/Deployment/cep.yaml
+          kubectl apply -f Terraform/K8S/Service/cep.yaml
+          kubectl apply -f Terraform/K8S/Ingress/cep.yaml
+
+      - name: Check resources
+        run: |
+          kubectl get pods -A
+          kubectl get deployments -A
+          kubectl get services -A
+          kubectl get ingress -A

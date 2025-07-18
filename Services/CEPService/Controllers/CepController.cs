@@ -1,12 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
 
 [ApiController]
-[Authorize]
 [Route("api/[controller]")]
 public class CepController : ControllerBase
 {
