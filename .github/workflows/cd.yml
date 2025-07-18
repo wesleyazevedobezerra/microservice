@@ -40,9 +40,6 @@ jobs:
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
 
-      - name: Attach ACR to AKS
-        run: az aks update -n $AKS_NAME -g $RG_NAME --attach-acr resourceintex
-
       - name: Apply ingress-nginx
         run: |
           kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
