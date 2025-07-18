@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CEPService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb7520d2dfb1d1ce3aac01de856cfb7ecc1f9451")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f46e54b583d47852da16964bf5c1170cfb1984d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CEPService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CEPService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
