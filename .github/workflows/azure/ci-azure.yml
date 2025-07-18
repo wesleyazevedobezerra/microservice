@@ -1,9 +1,9 @@
 # .github/workflows/ci.yml
-name: CI - Build Docker Image
+name: CI - Build Docker Image to Azure ACR
 
 on:
   workflow_run:
-    workflows: ["CD - Deploy Infra and App"]
+    workflows: ["CD - Deploy Infra AZURE"]
     types:
       - completed
 
@@ -21,6 +21,9 @@ jobs:
           login-server: resourceintex.azurecr.io
           username: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientId }}
           password: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientSecret }}
+
+      - name: Attach ACR to AKS
+        run: az aks update -n $AKS_NAME -g $RG_NAME --attach-acr resourceintex
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3

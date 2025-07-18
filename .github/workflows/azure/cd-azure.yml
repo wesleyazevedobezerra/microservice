@@ -1,5 +1,5 @@
 # .github/workflows/cd.yml
-name: CD - Deploy Infra and App
+name: CD - Deploy Infra AZURE
 
 on:
   push:
@@ -26,16 +26,16 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Terraform Init
-        run: terraform -chdir=Terraform init
+        run: terraform -chdir=Terraform_Azure init
 
       - name: Terraform Validate
-        run: terraform -chdir=Terraform validate
+        run: terraform -chdir=Terraform_Azure validate
 
       - name: Terraform Plan
-        run: terraform -chdir=Terraform plan
+        run: terraform -chdir=Terraform_Azure plan
 
       - name: Terraform Apply
-        run: terraform -chdir=Terraform apply -auto-approve
+        run: terraform -chdir=Terraform_Azure apply -auto-approve
 
       - name: Get AKS credentials
         run: az aks get-credentials --resource-group $RG_NAME --name $AKS_NAME --overwrite-existing
@@ -47,9 +47,9 @@ jobs:
 
       - name: Deploy app (Deployment, Service, Ingress)
         run: |
-          kubectl apply -f Terraform/K8S/Deployment/cep.yaml
-          kubectl apply -f Terraform/K8S/Service/cep.yaml
-          kubectl apply -f Terraform/K8S/Ingress/cep.yaml
+          kubectl apply -f Terraform_Azure/K8S/Deployment/cep.yaml
+          kubectl apply -f Terraform_Azure/K8S/Service/cep.yaml
+          kubectl apply -f Terraform_Azure/K8S/Ingress/cep.yaml
 
       - name: Check resources
         run: |
