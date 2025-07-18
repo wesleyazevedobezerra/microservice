@@ -30,6 +30,9 @@ jobs:
       - name: Terraform Init (AWS)
         run: terraform -chdir=Terraform_AWS init
 
+      - name: Terraform Plan (AWS)
+        run: terraform -chdir=Terraform_AWS plan
+
       - name: Terraform Apply (AWS)
         run: terraform -chdir=Terraform_AWS apply -auto-approve
 
