@@ -1,18 +1,15 @@
 resource "aws_eks_cluster" "eks" {
-  name     = "eks-terraform"
+  name     = "eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.29"
 
   vpc_config {
     subnet_ids = aws_subnet.public_subnets[*].id
   }
-
-  tags = var.tags
 }
 
-resource "aws_eks_node_group" "default" {
+resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks.name
-  node_group_name = "default"
+  node_group_name = "eks-node-group"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = aws_subnet.public_subnets[*].id
 
@@ -21,7 +18,4 @@ resource "aws_eks_node_group" "default" {
     max_size     = 3
     min_size     = 1
   }
-
-  instance_types = ["t3.small"]
-  tags           = var.tags
 }
