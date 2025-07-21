@@ -20,61 +20,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.5.7
-
-      - name: Terraform Init (AWS)
-        run: terraform -chdir=Terraform_AWS init
-
-      - name: Terraform Plan (AWS)
-        run: terraform -chdir=Terraform_AWS plan
-
-      - name: Terraform Apply (AWS)
-        run: terraform -chdir=Terraform_AWS apply -auto-approve
-
-      - name: Update kubeconfig for EKS
-        run: aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
-
-      - name: Deploy ingress-nginx no EKS
-        run: |
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
-          kubectl rollout status deployment ingress-nginx-controller --namespace ingress-nginx --timeout=120s
-
-      - name: Deploy app no EKS (Deployment, Service, Ingress)
-        run: |
-          kubectl apply -f Terraform_AWS/K8S/Deployment/cep.yaml
-          kubectl apply -f Terraform_AWS/K8S/Service/cep.yaml
-          kubectl apply -f Terraform_AWS/K8S/Ingress/cep.yaml
-
-      - name: Check resources EKS
-        run: |
-          kubectl get pods -A
-          kubectl get deployments -A
-          kubectl get services -A
-          kubectl get ingress -A
-
-  destroy-on-failure:
-    name: Destroy Infra if Deploy Fails
-    runs-on: ubuntu-latest
-    needs: deploy-aws
-    if: failure() # Só roda se o job deploy-aws falhar
-
-    env:
-      AWS_REGION: sa-east-1
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -84,5 +30,43 @@ jobs:
       - name: Terraform Init
         run: terraform -chdir=Terraform_AWS init
 
-      - name: Terraform Destroy
-        run: terraform -chdir=Terraform_AWS destroy -auto-approve
+      - name: Terraform Plan
+        run: terraform -chdir=Terraform_AWS plan
+
+      - name: Terraform Apply
+        run: terraform -chdir=Terraform_AWS apply -auto-approve
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+
+      - name: Deploy and Validate
+        run: |
+          set -e
+          trap 'echo "⚠️ Erro detectado. Executando terraform destroy..."; terraform -chdir=Terraform_AWS destroy -auto-approve' ERR
+
+          echo "🔧 Aplicando ingress-nginx..."
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+          kubectl rollout status deployment ingress-nginx-controller --namespace ingress-nginx --timeout=120s
+
+          echo "🚀 Aplicando recursos da aplicação..."
+          kubectl apply -f Terraform_AWS/K8S/Deployment/cep.yaml
+          kubectl apply -f Terraform_AWS/K8S/Service/cep.yaml
+          kubectl apply -f Terraform_AWS/K8S/Ingress/cep.yaml
+
+          echo "🔍 Validando pods..."
+          kubectl get pods -n default
+          STATUS=$(kubectl get pods -n default -o jsonpath="{.items[*].status.containerStatuses[*].state.waiting.reason}")
+          echo "Pod status: $STATUS"
+
+          if [[ "$STATUS" == *"ErrImagePull"* ]] || [[ "$STATUS" == *"ImagePullBackOff"* ]]; then
+            echo "❌ Erro ao puxar a imagem. Destruindo infraestrutura..."
+            terraform -chdir=Terraform_AWS destroy -auto-approve
+            exit 1
+          fi
+
+      - name: Check EKS Resources
+        run: |
+          kubectl get pods -A
+          kubectl get deployments -A
+          kubectl get services -A
+          kubectl get ingress -A
