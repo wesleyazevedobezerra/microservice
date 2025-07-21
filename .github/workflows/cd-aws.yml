@@ -36,8 +36,18 @@ jobs:
       - name: Terraform Apply (AWS)
         run: terraform -chdir=Terraform_AWS apply -auto-approve
 
-      - name: Update kubeconfig for EKS
-        run: aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME
+      - name: Wait for EKS to be ready
+        run: |
+          for i in {1..30}; do
+            echo "Checking if EKS cluster is available..."
+            if aws eks describe-cluster --region $AWS_REGION --name $EKS_CLUSTER_NAME > /dev/null 2>&1; then
+              echo "Cluster is ready."
+              break
+            else
+              echo "Cluster not ready. Waiting 30s..."
+              sleep 30
+            fi
+          done
 
       - name: Deploy ingress-nginx no EKS
         run: |
@@ -61,7 +71,7 @@ jobs:
     name: Destroy Infra if Deploy Fails
     runs-on: ubuntu-latest
     needs: deploy-aws
-    if: failure()
+    if: failure() && needs.deploy-aws.result == 'failure'
 
     env:
       AWS_REGION: sa-east-1
