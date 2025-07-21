@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "ecr" {
-  name                 = "resourceintex" # deve ser único por conta na região
-  image_tag_mutability = "MUTABLE"       # ou "IMMUTABLE"
+  name                 = "resourceintex"
+  image_tag_mutability = "MUTABLE"
   tags                 = var.tags
 
   encryption_configuration {

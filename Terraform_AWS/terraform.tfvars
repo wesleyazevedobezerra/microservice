@@ -1,5 +1,6 @@
+region = "sa-east-1"
 subnet_ids = [
-  "subnet-06fe85423d81d0dc4",
-  "subnet-078933558eaf73217",
-  "subnet-0cec9209216f52e6a"
+  "${aws_subnet.public_subnets[0].id}",
+  "${aws_subnet.public_subnets[1].id}",
+  "${aws_subnet.public_subnets[2].id}"
 ]
