@@ -34,7 +34,7 @@ jobs:
         run: terraform -chdir=Terraform_AWS plan
 
       - name: Terraform Apply (AWS)
-        run: terraform -chdir=Terraform_AWS apply -auto-approve --timeout=60s
+        run: terraform -chdir=Terraform_AWS apply -auto-approve
 
       - name: Deploy ingress-nginx no EKS
         run: |
