@@ -6,15 +6,9 @@ variable "region" {
 
 variable "tags" {
   type        = map(string)
-  description = "Tags aplicadas aos recursos da AWS"
+  description = "Tags aplicadas aos recursos"
   default = {
-    ambiente    = "desenvolvimento"
-    responsavel = "Wesley Azevedo Bezerra"
+    Environment = "Dev"
+    Terraform   = "true"
   }
-}
-
-variable "subnet_ids" {
-  type        = list(string)
-  description = "IDs das subnets para o cluster EKS"
-  default     = []
 }

@@ -1,3 +1,33 @@
+resource "aws_iam_role" "eks_cluster_role" {
+  name = "eks-cluster-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = {
+        Service = "eks.amazonaws.com"
+      },
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role" "eks_node_role" {
+  name = "eks-node-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      },
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
 resource "aws_eks_cluster" "eks" {
   name     = "eks-terraform"
   role_arn = aws_iam_role.eks_cluster_role.arn
@@ -8,11 +38,6 @@ resource "aws_eks_cluster" "eks" {
   }
 
   tags = var.tags
-
-  depends_on = [
-    aws_iam_role_policy_attachment.eks_cluster_AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.eks_cluster_AmazonEKSVPCResourceController,
-  ]
 }
 
 resource "aws_eks_node_group" "default" {
@@ -22,18 +47,10 @@ resource "aws_eks_node_group" "default" {
   subnet_ids      = aws_subnet.public_subnets[*].id
 
   scaling_config {
-    desired_size = 1
-    max_size     = 2
+    desired_size = 2
+    max_size     = 3
     min_size     = 1
   }
 
-  instance_types = ["t3.small"]
-
   tags = var.tags
-
-  depends_on = [
-    aws_iam_role_policy_attachment.eks_worker_node_AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.eks_worker_node_AmazonEC2ContainerRegistryReadOnly,
-    aws_iam_role_policy_attachment.eks_worker_node_AmazonEKS_CNI_Policy,
-  ]
 }
