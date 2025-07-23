@@ -28,7 +28,7 @@ jobs:
         run: |
           aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-      - name: Build and push Docker image to ECR
+      - name: Build and push Docker image to ECR Teste
         uses: docker/build-push-action@v3
         with:
           context: .
