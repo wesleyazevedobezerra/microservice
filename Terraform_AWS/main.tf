@@ -111,7 +111,7 @@ resource "aws_eks_node_group" "eks_nodes" {
     min_size     = 1
   }
 
-  instance_types = ["m5.large"]
+  instance_types = ["t3.micro"]
 
   tags = var.tags
 }
