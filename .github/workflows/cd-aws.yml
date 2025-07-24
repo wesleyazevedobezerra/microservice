@@ -38,7 +38,7 @@ jobs:
 
       - name: Configure kubectl to connect to EKS
         run: |
-          aws eks --region sa-east-1 update-kubeconfig --name eks-terraform
+          aws eks --region us-east-1 update-kubeconfig --name eks-terraform
 
       - name: Deploy ingress-nginx no EKS
         run: |
